@@ -1,10 +1,23 @@
 package com.cognizant.BDS.model;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 public class Feedback {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "feedback_id")
 	private int feedbackId;
+	@Column(name = "feedback_id")
 	private String hospitalName;
+	@Column(name = "feedback_id")
 	private String city;
+	@Column(name = "feedback_id")
 	private String comment;
+	@Column(name = "feedback_id")
 	private int userId;
 	
 	public Feedback(int feedbackId, String hospitalName, String city, String comment, int userId) {
