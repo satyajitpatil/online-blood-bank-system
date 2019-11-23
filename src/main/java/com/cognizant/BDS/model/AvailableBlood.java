@@ -1,5 +1,10 @@
 package com.cognizant.BDS.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "available_blood")
 public class AvailableBlood {
 	private int id;
 	private String bloodGroup;

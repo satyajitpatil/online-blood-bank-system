@@ -1,30 +1,34 @@
 package com.cognizant.BDS.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "feedback")
 public class Feedback {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "feedback_id")
 	private int feedbackId;
-	@Column(name = "feedback_id")
+	@Column(name = "hospital_name")
 	private String hospitalName;
-	@Column(name = "feedback_id")
-	private String city;
-	@Column(name = "feedback_id")
+	@Column(name = "city_id")
+	private int city_id;
+	@Column(name = "comment")
 	private String comment;
-	@Column(name = "feedback_id")
+	@Column(name = "user_id")
 	private int userId;
 	
-	public Feedback(int feedbackId, String hospitalName, String city, String comment, int userId) {
+	public Feedback(int feedbackId, String hospitalName, int city, String comment, int userId) {
 		super();
 		this.feedbackId = feedbackId;
 		this.hospitalName = hospitalName;
-		this.city = city;
+		this.city_id = city;
 		this.comment = comment;
 		this.userId = userId;
 	}
@@ -45,12 +49,12 @@ public class Feedback {
 		this.hospitalName = hospitalName;
 	}
 
-	public String getCity() {
-		return city;
+	public int getCity() {
+		return city_id;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setCity(int city) {
+		this.city_id = city;
 	}
 
 	public String getComment() {

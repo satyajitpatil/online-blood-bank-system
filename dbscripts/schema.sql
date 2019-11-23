@@ -37,10 +37,12 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `bloodbank`.`available_blood` (
 	`blood_id` INT NOT NULL AUTO_INCREMENT,
+	`blood_group` VARCHAR(4) NULL,
 	`state` VARCHAR(20) NULL,
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
 	`contact_number` INT(10) NULL,
+	`donor_id` INT NULL,
 PRIMARY KEY (`blood_id`))
 ENGINE = InnoDB;
 

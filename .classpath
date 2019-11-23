@@ -32,8 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/springSecurity"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/studentbootangular"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/everyLib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/truyumLib"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

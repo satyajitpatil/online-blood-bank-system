@@ -5,6 +5,7 @@ import com.cognizant.BDS.repository.AvailableBloodRepository;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.cognizant.BDS.model.AvailableBlood;
@@ -20,7 +21,8 @@ public class AvailableBloodService {
 	}
 	
 	public Set<AvailableBlood> getAvailableBlood(){
-		return null;
+		System.out.println(availableBloodRepository.getAvailableBlood());
+		return availableBloodRepository.getAvailableBlood();
 	}
 	
 	
