@@ -32,6 +32,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/truyumLib"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFullStackLibrary"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -21,6 +21,12 @@ public class Slot {
 		this.donorId = donorId;
 	}
 
+	
+	public Slot() {
+		
+	}
+
+
 	public int getSlotId() {
 		return slotId;
 	}

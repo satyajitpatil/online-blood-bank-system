@@ -32,6 +32,10 @@ public class Feedback {
 		this.comment = comment;
 		this.userId = userId;
 	}
+	
+	public Feedback() {
+		
+	}
 
 	public int getFeedbackId() {
 		return feedbackId;
