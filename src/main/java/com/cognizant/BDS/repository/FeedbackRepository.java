@@ -9,7 +9,10 @@ import com.cognizant.BDS.model.Feedback;
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 	
-	@Query(value = "SELECT feedback_id,hospital_name,city_id,comment,user_id FROM feedback;", nativeQuery = true)
+	@Query(value = "SELECT feedback.feedback_id,feedback.hospital_name,city.city,feedback.comments,feedback.user_id " + 
+			"FROM feedback " + 
+			"INNER JOIN city " + 
+			"ON feedback.city_id = city.id;", nativeQuery = true)
 	public Set<Feedback> getAllFeedbacks();
 	
 }
