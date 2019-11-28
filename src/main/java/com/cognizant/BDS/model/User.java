@@ -1,24 +1,83 @@
 package com.cognizant.BDS.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="user_id")
 	private int userId;
+	
+	@Column(name="user_name")
+	private String userName;
+	
+	@Column(name="first_name")
 	private String firstName;
+	
+	@Column(name="last_name")
 	private String lastName;
+	
+	@Column(name="age")
 	private int age;
+	
+	@Column(name="gender")
 	private String gender;
-	private int contactNumber;
+	
+	@Column(name="contact_number")
+	private long contactNumber;
+	
+	@Column(name="email")
 	private String email;
+	
+	@Column(name="password")
 	private String password;
+	
+	@Column(name="weight")
 	private double weight;
-	private String state;
+	
+	@Column(name="state_id")
+	private int state;
+	
+	@Column(name="area")
 	private String area;
+	
+	@Column(name="pincode")
 	private int pincode;
+	
+	@Column(name="blood_group")
 	private String bloodGroup;
 	
-	public User(int userId, String firstName, String lastName, int age, String gender, int contactNumber, String email,
-			String password, double weight, String state, String area, int pincode, String bloodGroup) {
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "ur_us_id"), inverseJoinColumns = @JoinColumn(name = "ur_ro_id"))
+	private Set<Role> roleList = new HashSet<Role>();
+	
+	
+	
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public User(int userId, String userName, String firstName, String lastName, int age, String gender, long contactNumber, String email,
+			String password, double weight, int state, String area, int pincode, String bloodGroup, Set<Role> roleList) {
 		super();
 		this.userId = userId;
+		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -31,6 +90,7 @@ public class User {
 		this.area = area;
 		this.pincode = pincode;
 		this.bloodGroup = bloodGroup;
+		this.roleList = roleList;
 	}
 
 	public int getUserId() {
@@ -39,6 +99,14 @@ public class User {
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String getFirstName() {
@@ -57,7 +125,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getAge() {
+	public int getAge(){
 		return age;
 	}
 
@@ -73,11 +141,11 @@ public class User {
 		this.gender = gender;
 	}
 
-	public int getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
 
-	public void setContactNumber(int contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 
@@ -105,11 +173,11 @@ public class User {
 		this.weight = weight;
 	}
 
-	public String getState() {
+	public int getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(int state) {
 		this.state = state;
 	}
 
@@ -136,6 +204,16 @@ public class User {
 	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
+
+	public Set<Role> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(Set<Role> roleList) {
+		this.roleList = roleList;
+	}
+	
+	
 	
 	
 	

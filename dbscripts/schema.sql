@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`feedback` (
     `feedback_id` INT NOT NULL AUTO_INCREMENT,
     `hospital_name` VARCHAR(15) NULL,
 	`city_id` INT NULL,
-	`comment` TEXT(500) NULL,
+	`comments` TEXT(500) NULL,
 	`user_id` INT NOT NULL,
 	PRIMARY KEY (`feedback_id`))
 ENGINE = InnoDB;
@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`user` (
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
 	`blood_group` VARCHAR(4),
+	`donor_id` INT NULL,
 PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
@@ -62,4 +63,29 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`city`(
 	`state_id` INT NULL,
 PRIMARY KEY (`city_id`))
 ENGINE = InnoDB;
+
+
+CREATE TABLE `bloodbank`.`role` (
+  `role_id` INT NOT NULL,
+  `role_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`role_id`));
+
+
+CREATE TABLE `bloodbank`.`user_role` (
+  `ur_id` INT NOT NULL AUTO_INCREMENT,
+  `ur_us_id` INT NULL,
+  `ur_ro_id` INT NOT NULL,
+  PRIMARY KEY (`ur_id`),
+  INDEX `us_us_fk_idx` (`ur_us_id` ASC),
+  INDEX `ur_ro_fk_idx` (`ur_ro_id` ASC),
+  CONSTRAINT `ur_us_fk`
+    FOREIGN KEY (`ur_us_id`)
+    REFERENCES `bloodbank`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `ur_ro_fk`
+    FOREIGN KEY (`ur_ro_id`)
+    REFERENCES `bloodbank`.`role` (`role_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
