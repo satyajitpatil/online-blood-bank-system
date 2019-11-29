@@ -1,13 +1,36 @@
 package com.cognizant.BDS.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+
+import org.springframework.stereotype.Component;
+
+@Entity
+@Table(name="blood_requirement")
+@SecondaryTable(name="state")
 public class BloodRequirement {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="req_id")
 	private int id;
+	@Column(name="blood_group")
 	private String bloodGroup;
+	@Column(table = "state",name="state")
 	private String state;
+	@Column(name="area")
 	private String area;
+	@Column(name="pincode")
 	private int pincode;
+	@Column(name="contact_number")
 	private int contactNumber;
-	private int requesterId;
+	@Column(name="user_id")
+	private int requesterId;//user
 	
 	public BloodRequirement(int id, String bloodGroup, String state, String area, int pincode, int contactNumber,
 			int requesterId) {
@@ -20,6 +43,11 @@ public class BloodRequirement {
 		this.contactNumber = contactNumber;
 		this.requesterId = requesterId;
 	}
+	
+
+	public BloodRequirement() {
+	}
+
 
 	public int getId() {
 		return id;

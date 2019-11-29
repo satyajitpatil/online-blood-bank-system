@@ -89,3 +89,12 @@ CREATE TABLE `bloodbank`.`user_role` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+
+CREATE TABLE `bloodbank`.`slot` (
+  `slot_id` INT NOT NULL AUTO_INCREMENT,
+`hospital_name` varchar(50),
+  `city_id` INT NOT NULL,
+  `donor_id` INT NOT NULL,
+  PRIMARY KEY (`slot_id`))
+;
+

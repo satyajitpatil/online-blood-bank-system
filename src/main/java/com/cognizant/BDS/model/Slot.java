@@ -3,12 +3,32 @@ package com.cognizant.BDS.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="slot")
+@SecondaryTable(name="city")
 public class Slot {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="slot_id")
 	private int slotId;
+	@Column(name="hospital_name")
 	private String hospitalName;
+	@Column(table = "city",name="city")
 	private String city;
+	@Column(name="date")
 	private LocalDate date;
+	@Column(name="time")
 	private LocalTime time;
+	@Column(name="donor_id")
 	private int donorId;
 	
 	public Slot(int slotId, String hospitalName, String city, LocalDate date, LocalTime time, int donorId) {
