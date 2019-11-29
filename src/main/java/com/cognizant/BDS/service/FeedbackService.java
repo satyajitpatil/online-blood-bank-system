@@ -22,4 +22,11 @@ public class FeedbackService {
 	public Set<Feedback> getAllFeedbacks(){
 		return feedbackRepository.getAllFeedbacks();
 	}
+	
+	public int addFeedback(Feedback feedback){
+		//get id of the particular city
+		int city_id = feedbackRepository.getCity(feedback.getCity());
+		//pass the feedback value with city_id
+		return feedbackRepository.addFeedback(feedback.getHospitalName(),city_id,feedback.getComment(),feedback.getUserId());
+	}
 }

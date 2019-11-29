@@ -19,9 +19,12 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 			"ON feedback.city_id = city.id;", nativeQuery = true)
 	public Set<Feedback> getAllFeedbacks();
 	
+	@Query(value = "SELECT id from city where city=:city;")
+	public int getCity(String city);
+	
 	@Modifying
 	@Transactional
-	@Query(value = "INSERT feedback SET hospital_name=?,city_id=?,comments=?,user_id=?", nativeQuery = true)
-	int addFeedback(String hospitalName, String city , String comments, int userId);
+	@Query(value = "INSERT INTO feedback (hospital_name, city_id, comments, user_id) values(:hospitalName,:city_id,:comments,:userId);", nativeQuery = true)
+	int addFeedback(String hospitalName, int city_id , String comments, int userId);
 	
 }
