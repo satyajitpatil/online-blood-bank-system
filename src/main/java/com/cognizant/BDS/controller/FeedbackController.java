@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,18 +20,16 @@ public class FeedbackController {
 	@Autowired
 	private FeedbackService feedbackService;
 
-	public FeedbackController() {
-	
-	}
 	
 	@RequestMapping(value="/feedback")
 	public ResponseEntity<Set<Feedback>> getAllFeedbacks(){
 		return new ResponseEntity<Set<Feedback>>(feedbackService.getAllFeedbacks(),HttpStatus.OK);
 	}
 	
-	@PutMapping()
-	public int addFeedback(@RequestBody Feedback feedback) {
+	/*@PostMapping(value="/addFeedback")
+	public Integer addFeedback(@RequestBody Feedback feedback) {
 		return feedbackService.addFeedback(feedback);
-	}
+		
+	}*/
 
 }

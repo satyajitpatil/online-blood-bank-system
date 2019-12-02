@@ -12,9 +12,24 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cognizant.BDS.model.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-	@Query(value = "SELECT user_id,user_name,first_name,last_name,age,gender,contact_number,email,password,weight,state_id,area,pincode,blood_group FROM user WHERE user_name=?;", nativeQuery = true)
+	@Query(value = "SELECT user.user_id, "
+			+ "user.user_name, "
+			+ "user.first_name, "
+			+ "user.last_name, "
+			+ "user.age, "
+			+ "user.gender, "
+			+ "user.contact_number, "
+			+ "user.email, "
+			+ "user.password, "
+			+ "user.weight, "
+			+ "state.state, "
+			+ "user.area, "
+			+ "user.pincode, "
+			+ "user.blood_group "
+			+ "FROM user,state "
+			+ "WHERE user_name=? AND user.state_id = state=state_id ;", nativeQuery = true)
 	Optional<User> findUserByUsername(String username);
 	
 }

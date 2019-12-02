@@ -13,18 +13,20 @@ import com.cognizant.BDS.model.Feedback;
 
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
 	
-	@Query(value = "SELECT feedback.feedback_id,feedback.hospital_name,city.city,feedback.comments,feedback.user_id " + 
-			"FROM feedback " + 
-			"INNER JOIN city " + 
-			"ON feedback.city_id = city.id;", nativeQuery = true)
+	@Query(value = "select feedback.feedback_id, "
+			+ "feedback.hospital_name, "
+			+ "city.city, feedback.comments, "
+			+ "feedback.user_id "
+			+ "from feedback,city "
+			+ "where feedback.city_id = city.id;", nativeQuery = true)
 	public Set<Feedback> getAllFeedbacks();
 	
-	@Query(value = "SELECT id from city where city=:city;")
-	public int getCity(String city);
+	@Query(value = "SELECT id from city where city=:cityName;",nativeQuery = true)
+	public Integer getCity(String cityName);
 	
-	@Modifying
+	/*@Modifying
 	@Transactional
-	@Query(value = "INSERT INTO feedback (hospital_name, city_id, comments, user_id) values(:hospitalName,:city_id,:comments,:userId);", nativeQuery = true)
-	int addFeedback(String hospitalName, int city_id , String comments, int userId);
+	@Query(value = "INSERT INTO feedback (hospital_name, city_id, comments, user_id) values(?,?,?,?);", nativeQuery = true)
+	Integer addFeedback(String hospitalName, int city_id , String comments, int userId);*/
 	
 }

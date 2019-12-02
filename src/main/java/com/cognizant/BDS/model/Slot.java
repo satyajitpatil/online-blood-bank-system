@@ -19,7 +19,7 @@ public class Slot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="slot_id")
-	private int slotId;
+	private Long slotId;
 	@Column(name="hospital_name")
 	private String hospitalName;
 	@Column(table = "city",name="city")
@@ -31,7 +31,7 @@ public class Slot {
 	@Column(name="donor_id")
 	private int donorId;
 	
-	public Slot(int slotId, String hospitalName, String city, LocalDate date, LocalTime time, int donorId) {
+	public Slot(Long slotId, String hospitalName, String city, LocalDate date, LocalTime time, int donorId) {
 		super();
 		this.slotId = slotId;
 		this.hospitalName = hospitalName;
@@ -47,11 +47,11 @@ public class Slot {
 	}
 
 
-	public int getSlotId() {
+	public Long getSlotId() {
 		return slotId;
 	}
 
-	public void setSlotId(int slotId) {
+	public void setSlotId(Long slotId) {
 		this.slotId = slotId;
 	}
 

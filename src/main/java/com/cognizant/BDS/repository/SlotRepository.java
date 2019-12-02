@@ -13,9 +13,8 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 
 		@Query(value = "SELECT slot.slot_id,slot.hospital_name,city.city," + 
 				"slot.date,slot.time,slot.donor_id "+
-				"FROM slot " + 
-				"INNER JOIN city ON" +
-				" slot.city_id = city.id;", nativeQuery = true)
+				"FROM slot, city " + 
+				"WHERE slot.city_id = city.id;", nativeQuery = true)
 		public Set<Slot> getAllSlot();
 		
 	}

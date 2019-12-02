@@ -16,7 +16,7 @@ public class Feedback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "feedback_id")
-	private int feedbackId;
+	private Long feedbackId;
 	@Column(name = "hospital_name")
 	private String hospitalName;
 	@Column(name = "city",table = "city")
@@ -26,7 +26,7 @@ public class Feedback {
 	@Column(name = "user_id")
 	private int userId;
 	
-	public Feedback(int feedbackId, String hospitalName, String city, String comment, int userId) {
+	public Feedback(Long feedbackId, String hospitalName, String city, String comment, int userId) {
 		super();
 		this.feedbackId = feedbackId;
 		this.hospitalName = hospitalName;
@@ -36,14 +36,14 @@ public class Feedback {
 	}
 	
 	public Feedback() {
-		
+		super();
 	}
 
-	public int getFeedbackId() {
+	public Long getFeedbackId() {
 		return feedbackId;
 	}
 
-	public void setFeedbackId(int feedbackId) {
+	public void setFeedbackId(Long feedbackId) {
 		this.feedbackId = feedbackId;
 	}
 
