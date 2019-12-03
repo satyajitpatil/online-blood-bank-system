@@ -18,7 +18,7 @@ public class BloodRequirement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="req_id")
-	private Long id;
+	private long id;
 	@Column(name="blood_group")
 	private String bloodGroup;
 	@Column(table = "state",name="state")
@@ -32,7 +32,7 @@ public class BloodRequirement {
 	@Column(name="user_id")
 	private int requesterId;//user
 	
-	public BloodRequirement(Long id, String bloodGroup, String state, String area, int pincode, int contactNumber,
+	public BloodRequirement(long id, String bloodGroup, String state, String area, int pincode, int contactNumber,
 			int requesterId) {
 		super();
 		this.id = id;
@@ -49,11 +49,11 @@ public class BloodRequirement {
 	}
 
 
-	public Long getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

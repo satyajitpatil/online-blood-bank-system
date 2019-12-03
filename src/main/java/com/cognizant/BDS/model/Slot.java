@@ -19,7 +19,7 @@ public class Slot {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="slot_id")
-	private Long slotId;
+	private long slotId;
 	@Column(name="hospital_name")
 	private String hospitalName;
 	@Column(table = "city",name="city")

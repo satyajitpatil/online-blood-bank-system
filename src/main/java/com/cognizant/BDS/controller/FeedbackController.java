@@ -26,10 +26,10 @@ public class FeedbackController {
 		return new ResponseEntity<Set<Feedback>>(feedbackService.getAllFeedbacks(),HttpStatus.OK);
 	}
 	
-	/*@PostMapping(value="/addFeedback")
-	public Integer addFeedback(@RequestBody Feedback feedback) {
-		return feedbackService.addFeedback(feedback);
+	@PutMapping(value="/addFeedback")
+	public void addFeedback(@RequestBody Feedback feedback) {
+		feedbackService.addFeedback(feedback);
 		
-	}*/
+	}
 
 }

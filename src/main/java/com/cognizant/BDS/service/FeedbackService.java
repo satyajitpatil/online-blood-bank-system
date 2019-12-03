@@ -23,10 +23,12 @@ public class FeedbackService {
 		return feedbackRepository.getAllFeedbacks();
 	}
 	
-	/*public Integer addFeedback(Feedback feedback){
+	public void addFeedback(Feedback feedback){
 		//get id of the particular city
-		int city_id = feedbackRepository.getCity(feedback.getCity());
+		int city_id = feedbackRepository.getCity(feedback.getCity().getCityName());
+		System.out.println(city_id);
 		//pass the feedback value with city_id
-		return feedbackRepository.addFeedback(feedback.getHospitalName(),city_id,feedback.getComment(),feedback.getUserId());
-	}*/
+		///System.out.println(feedback+"-------------");
+		//feedbackRepository.save(feedback);
+	}
 }
