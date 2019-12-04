@@ -50,8 +50,8 @@ public class User {
 	@Column(name="weight")
 	private double weight;
 	
-	@Column(name="state_id")
-	private int state;
+	@JoinColumn(name="state_id")
+	private String state;
 	
 	@Column(name="area")
 	private String area;
@@ -74,7 +74,7 @@ public class User {
 	}
 
 	public User(Long userId, String userName, String firstName, String lastName, int age, String gender, long contactNumber, String email,
-			String password, double weight, int state, String area, int pincode, String bloodGroup, Set<Role> roleList) {
+			String password, double weight, String state, String area, int pincode, String bloodGroup, Set<Role> roleList) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -173,11 +173,11 @@ public class User {
 		this.weight = weight;
 	}
 
-	public int getState() {
+	public String getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 

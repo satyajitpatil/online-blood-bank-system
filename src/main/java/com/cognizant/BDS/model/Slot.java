@@ -8,12 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="slot")
-@SecondaryTable(name="city")
 public class Slot {
 	
 	@Id
@@ -22,7 +22,7 @@ public class Slot {
 	private long slotId;
 	@Column(name="hospital_name")
 	private String hospitalName;
-	@Column(table = "city",name="city")
+	@JoinColumn(name="city_id")
 	private String city;
 	@Column(name="date")
 	private LocalDate date;

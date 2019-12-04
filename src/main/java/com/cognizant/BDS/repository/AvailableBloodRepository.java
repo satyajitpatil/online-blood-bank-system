@@ -15,9 +15,10 @@ public interface AvailableBloodRepository extends JpaRepository<AvailableBlood, 
 			+ "available_blood.area, "
 			+ "available_blood.pincode, "
 			+ "available_blood.contact_number, "
+			+ "available_blood.units, "
 			+ "available_blood.donor_id "
 			+ "FROM available_blood, state "
 			+ "where available_blood.state_id = state.state_id;", nativeQuery = true)
-	Set<AvailableBlood> getAvailableBlood();
+	public Set<AvailableBlood> getAvailableBlood();
 	
 }

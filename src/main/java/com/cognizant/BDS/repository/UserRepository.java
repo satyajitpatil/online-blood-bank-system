@@ -24,12 +24,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			+ "user.email, "
 			+ "user.password, "
 			+ "user.weight, "
-			+ "user.state_id, "
+			+ "state.state, "
 			+ "user.area, "
 			+ "user.pincode, "
 			+ "user.blood_group "
-			+ "FROM user "
-			+ "WHERE user_name=?;", nativeQuery = true)
+			+ "FROM user,state "
+			+ "WHERE user.state_id = state.state_id AND user_name=?;", nativeQuery = true)
 	Optional<User> findUserByUsername(String username);
 	
 }

@@ -23,12 +23,9 @@ public class FeedbackService {
 		return feedbackRepository.getAllFeedbacks();
 	}
 	
-	public void addFeedback(Feedback feedback){
+	public int addFeedback(Feedback feedback){
 		//get id of the particular city
-		int city_id = feedbackRepository.getCity(feedback.getCity().getCityName());
-		System.out.println(city_id);
-		//pass the feedback value with city_id
-		///System.out.println(feedback+"-------------");
-		//feedbackRepository.save(feedback);
+		int cityId = feedbackRepository.getCityIdByCityName(feedback.getCity());
+		return feedbackRepository.addFeedback(feedback.getHospitalName(), cityId, feedback.getComment(), feedback.getUserId());
 	}
 }

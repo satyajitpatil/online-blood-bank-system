@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="blood_requirement")
-@SecondaryTable(name="state")
 public class BloodRequirement {
 	
 	@Id
@@ -21,7 +21,7 @@ public class BloodRequirement {
 	private long id;
 	@Column(name="blood_group")
 	private String bloodGroup;
-	@Column(table = "state",name="state")
+	@JoinColumn(name="state_id")
 	private String state;
 	@Column(name="area")
 	private String area;
@@ -103,6 +103,13 @@ public class BloodRequirement {
 
 	public void setRequesterId(int requesterId) {
 		this.requesterId = requesterId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "BloodRequirement [id=" + id + ", bloodGroup=" + bloodGroup + ", state=" + state + ", area=" + area
+				+ ", pincode=" + pincode + ", contactNumber=" + contactNumber + ", requesterId=" + requesterId + "]";
 	}
 	
 	
