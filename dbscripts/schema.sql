@@ -66,8 +66,21 @@ CREATE TABLE `bloodbank`.`slot` (
   `slot_id` INT NOT NULL AUTO_INCREMENT,
 `hospital_name` varchar(50),
   `city_id` INT NOT NULL,
+  `date` DATE NULL,
+  `time` TIME NULL,
   `donor_id` INT NOT NULL,
-  PRIMARY KEY (`slot_id`))
+  PRIMARY KEY (`slot_id`),
+   CONSTRAINT `city_id_slot_fk`
+    FOREIGN KEY (`city_id`)
+    REFERENCES `bloodbank`.`city` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `donor_id_slot_fk`
+    FOREIGN KEY (`donor_id`)
+    REFERENCES `bloodbank`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+    )
 ENGINE = InnoDB;
 
 -- -----------state table

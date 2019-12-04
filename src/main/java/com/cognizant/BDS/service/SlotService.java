@@ -25,9 +25,9 @@ public class SlotService {
 		return slotRepository.getAllSlot();
 	}
 	
-	public int checkIfASlotIsBooked(Slot slot){
+	public Long checkIfASlotIsBooked(Slot slot){
 		int cityId = slotRepository.getCityIdByCityName(slot.getCity());
-		return slotRepository.getCountOfSlotByInput(slot.getHospitalName(), cityId, slot.getDate(), slot.getTime());
+		return slotRepository.getCountOfSlotByInput(slot.getHospitalName(), cityId, slot.getDate().toString(), slot.getTime().toString() );
 	}
 
 }

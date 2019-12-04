@@ -5,11 +5,13 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.cognizant.BDS.model.Feedback;
 import com.cognizant.BDS.model.Slot;
 
 import com.cognizant.BDS.service.SlotService;
@@ -19,9 +21,6 @@ public class SlotController {
 
 	@Autowired
 	private SlotService slotService;
-	
-	public SlotController()
-	{}
 
 
 	@RequestMapping(value="/slot")
@@ -29,9 +28,9 @@ public class SlotController {
 		return new ResponseEntity<Set<Slot>>(slotService.getAllSlot(),HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/checkSlot")
-	public int checkIfASlotIsBooked(@RequestBody Slot slot){
-		return slotService.checkIfASlotIsBooked(slot);
+	@PutMapping(value = "/checkSlot")
+	public ResponseEntity<Long> checkIfASlotIsBooked(@RequestBody Slot slot){
+		return new ResponseEntity<Long>(slotService.checkIfASlotIsBooked(slot),HttpStatus.OK);
 	}
 	
 }
