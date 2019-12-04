@@ -18,6 +18,7 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `bloodbank`.`user` (
 	`user_id` INT NOT NULL AUTO_INCREMENT,
+	`user_name` VARCHAR(50) NOT NULL,
 	`first_name` VARCHAR(50) NULL,
 	`last_name` VARCHAR(50) NULL,
 	`age` INT(3) NULL,
@@ -25,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`user` (
 	`contact_number` BIGINT(10) NULL,
 	`email` VARCHAR(15) NULL,
 	`password` VARCHAR(300) NULL,
-	`weight` DECIMAL(3,2) NULL,
+	`weight` DECIMAL(3,1) NULL,
 	`state_id` INT(2) NULL,
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
@@ -39,12 +40,34 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bloodbank`.`available_blood` (
 	`blood_id` INT NOT NULL AUTO_INCREMENT,
 	`blood_group` VARCHAR(4) NULL,
-	`state` VARCHAR(20) NULL,
+	`state_id` INT(2) NULL,
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
 	`contact_number` BIGINT(10) NULL,
+	`units` INT NOT NULL,
 	`donor_id` INT NULL,
 PRIMARY KEY (`blood_id`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `bloodbank`.`blood_requirement` (
+	`req_id` INT NOT NULL AUTO_INCREMENT,
+	`blood_group` VARCHAR(4) NULL,
+	`state_id` INT(2) NULL,
+	`area` VARCHAR(20) NULL,
+	`pincode` INT(6) NULL,
+	`contact_number` BIGINT(10) NULL,
+	`user_id` INT NULL,
+PRIMARY KEY (`req_id`))
+ENGINE = InnoDB;
+
+-- -----------slot table
+
+CREATE TABLE `bloodbank`.`slot` (
+  `slot_id` INT NOT NULL AUTO_INCREMENT,
+`hospital_name` varchar(50),
+  `city_id` INT NOT NULL,
+  `donor_id` INT NOT NULL,
+  PRIMARY KEY (`slot_id`))
 ENGINE = InnoDB;
 
 -- -----------state table
@@ -90,11 +113,5 @@ CREATE TABLE `bloodbank`.`user_role` (
     ON UPDATE NO ACTION);
 
 
-CREATE TABLE `bloodbank`.`slot` (
-  `slot_id` INT NOT NULL AUTO_INCREMENT,
-`hospital_name` varchar(50),
-  `city_id` INT NOT NULL,
-  `donor_id` INT NOT NULL,
-  PRIMARY KEY (`slot_id`))
-;
+
 

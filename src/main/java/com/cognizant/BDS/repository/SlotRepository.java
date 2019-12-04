@@ -1,5 +1,7 @@
 package com.cognizant.BDS.repository;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +18,12 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 				"FROM slot, city " + 
 				"WHERE slot.city_id = city.id;", nativeQuery = true)
 		public Set<Slot> getAllSlot();
+		
+		@Query(value = "SELECT id from city where city=?;",nativeQuery = true)
+		public int getCityIdByCityName(String cityName);
+		
+		@Query(value = "select count(slot.slot_id) from slot where slot.hospital_name=:hospitalName and slot.city_id=:cityId  and slot.date=:date and slot.time =:time")
+		public int getCountOfSlotByInput(String hospitalName, int cityId, LocalDate date, LocalTime time);
 		
 	}
 

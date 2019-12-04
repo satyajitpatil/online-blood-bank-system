@@ -24,5 +24,10 @@ public class SlotService {
 	public Set<Slot> getAllSlot(){
 		return slotRepository.getAllSlot();
 	}
+	
+	public int checkIfASlotIsBooked(Slot slot){
+		int cityId = slotRepository.getCityIdByCityName(slot.getCity());
+		return slotRepository.getCountOfSlotByInput(slot.getHospitalName(), cityId, slot.getDate(), slot.getTime());
+	}
 
 }
