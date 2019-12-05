@@ -125,6 +125,20 @@ CREATE TABLE `bloodbank`.`user_role` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+CREATE  TABLE `bloodbank`.`customer_auth` (
+  `id` INT NOT NULL ,
+  `selector` VARCHAR(45) NOT NULL ,
+  `validator` VARCHAR(100) NOT NULL ,
+  `user_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `user_id_fk_auth_idx` (`user_id` ASC) ,
+  CONSTRAINT `user_id_fk_auth`
+    FOREIGN KEY (`user_id` )
+    REFERENCES `bloodbank`.`user` (`user_id` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
 
 
 

@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +32,14 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 		@Query(value = "select count(slot.slot_id) from slot where slot.hospital_name=? and slot.city_id=?  and slot.date=? and slot.time =?;",nativeQuery = true)
 		public Long getCountOfSlotByInput(String hospitalName, int cityId, String date, String time);
 		
+		
+		//insert slot
+		/*@Modifying
+		@Transactional
+		@Query(value = "INSERT INTO slot (hospital_name, cityId, date, time, donorId) values(?,?,?,?,?);", nativeQuery = true)
+		int addFeedback(String hospitalName, int city_id , String date, String time, int donorId);
+		
+		*/
 	}
 
 	
