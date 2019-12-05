@@ -21,4 +21,9 @@ public class BloodRequirementService {
 	public Set<BloodRequirement> getAllBloodRequirement(){
 		return bloodRequirementRepository.getAllBloodRequirement();
 	}
+	
+	public Set<BloodRequirement> getBloodRequirementByStateAndAreaAndBloodGroup(String state, String area, int pincode, String bloodGroup){
+		int stateId = bloodRequirementRepository.getStateIdByStateName(state);
+		return bloodRequirementRepository.getBloodRequirementByStateAndAreaAndBloodGroup(stateId, area, pincode, bloodGroup);
+	}
 }
