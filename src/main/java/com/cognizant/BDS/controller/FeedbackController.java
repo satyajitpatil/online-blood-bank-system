@@ -26,7 +26,7 @@ public class FeedbackController {
 		return new ResponseEntity<Set<Feedback>>(feedbackService.getAllFeedbacks(),HttpStatus.OK);
 	}
 	
-	@PutMapping(value="/addFeedback")
+	@PostMapping(value="/addFeedback")
 	public void addFeedback(@RequestBody Feedback feedback) {
 		feedbackService.addFeedback(feedback);
 		

@@ -32,4 +32,18 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			+ "WHERE user.state_id = state.state_id AND user_name=?;", nativeQuery = true)
 	Optional<User> findUserByUsername(String username);
 	
+	@Modifying
+    @Transactional
+    @Query(value= "Insert into user(user_name, first_name, last_name, age, gender, contact_number, email, password, weight, state_id, area, pincode, blood_group) values (?,?,?,?,?,?,?,?,?,?,?,?,?)", nativeQuery=true)
+    Integer addUser(String userName, String firstName, String lastName, int age, String gender, long contactNumber, String email, String password, double weight, int stateId, String area, int pincode, String blooGroup);
+    
+    @Modifying
+    @Transactional
+    @Query(value = "INSERT INTO user_role (ur_us_id, ur_ro_id) values (?,?)", nativeQuery=true)
+    Integer addUserRole(long userId, long rollId);
+    
+    @Query(value = "SELECT state_id from state where state=?;",nativeQuery = true)
+    public int getStateIdByStateName(String stateName);
+
+	
 }

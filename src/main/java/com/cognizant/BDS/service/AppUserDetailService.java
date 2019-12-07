@@ -49,13 +49,18 @@ public class AppUserDetailService implements UserDetailsService {
 			throw new Exception("User already exists");
 			//TODO: Custom exception
 		} else {
-			System.out.println(user);
-			String pass = user.getPassword();
-			user.setPassword(passwordEncoder().encode(pass));
-			//////userRepository.save(user);
-			//userRepository.addUser(user.getUserName(), user.getFirstName(),user.getLastName(), user.getPassword());
-			User newUser = userRepository.findUserByUsername(user.getUserName()).get();
-			//userRepository.addUserRole(newUser.getUserId(), 2);
+			System.out.println("ifNotPresent");
+            String pass = user.getPassword();
+            user.setPassword(passwordEncoder().encode(pass));
+            //userRepository.save(user);
+            int state_id = userRepository.getStateIdByStateName(user.getState());
+            System.out.println(state_id);
+            userRepository.addUser(user.getUserName(), user.getFirstName(),user.getLastName(),user.getAge(),user.getGender(),user.getContactNumber(),user.getEmail(), user.getPassword(),user.getWeight(),state_id,user.getArea(),user.getPincode(),user.getBloodGroup());
+            System.out.println("ifNotPresent2");
+            User newUser = userRepository.findUserByUsername(user.getUserName()).get();
+            userRepository.addUserRole(newUser.getUserId(), 2);
+            System.out.println("ifNotPresent3");
+
 		}
 	}
 	
