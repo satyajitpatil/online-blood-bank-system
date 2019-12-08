@@ -3,6 +3,7 @@ package com.cognizant.BDS.controller;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -14,12 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.cognizant.BDS.model.Feedback;
 import com.cognizant.BDS.model.User;
 import com.cognizant.BDS.service.AppUserDetailService;
 
@@ -54,6 +57,11 @@ public class UserController {
         System.out.println(map);
 	}*/
 	
+	@GetMapping(value = "/{userName}")
+	public ResponseEntity<User> getUserBydUserName(@PathVariable("userName") String userName){
+		return new ResponseEntity<User>(appUserDetailService.getUserByUserName(userName),HttpStatus.OK);
+		
+	}
 	
 
 	public PasswordEncoder passwordEncoder() {

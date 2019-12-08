@@ -83,6 +83,65 @@ CREATE TABLE `bloodbank`.`slot` (
     )
 ENGINE = InnoDB;
 
+
+-- -----------Blood bank tables
+CREATE TABLE IF NOT EXISTS `bloodbank`.`blood_bank`(
+	`blood_bank_id` INT NOT NULL AUTO_INCREMENT,
+    `blood_bank_name` VARCHAR(50) NULL,
+    `state_id` INT NOT NULL,
+    `area` VARCHAR(50) NULL,
+    `pincode` INT NOT NULL,
+    `contact_number` BIGINT(10) NOT NULL,
+PRIMARY KEY (`blood_bank_id`),
+CONSTRAINT `state_id_of_hospital_table_fk`
+    FOREIGN KEY (`state_id`)
+    REFERENCES `bloodbank`.`state` (`state_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- ----------- blood_request_from_bank_mapping --its remaining
+create table if not exists `bloodbank`.`blood_request_from_bank_mapping`(
+	`mapping_id` INT NOT NULL AUTO_INCREMENT,
+	`available_blood_id` INT NOT NULL,
+    `requestor_id` INT NOT NULL,
+    `blood_bank_id` INT NOT NULL,
+    `is_approved` BOOLEAN NOT NULL DEFAULT 0,
+    `is_rejected` BOOLEAN NOT NULL DEFAULT 0,
+PRIMARY KEY (`mapping_id`),
+CONSTRAINT `available_blood_id_of_mapping_table_fk`
+    FOREIGN KEY (`available_blood_id`)
+    REFERENCES `bloodbank`.`available_blood` (`blood_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `requestor_id_of_mapping_table_fk`
+    FOREIGN KEY (`requestor_id`)
+    REFERENCES `bloodbank`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+CONSTRAINT `blood_bank_id_of_mapping_table_fk`
+    FOREIGN KEY (`blood_bank_id`)
+    REFERENCES `bloodbank`.`blood_bank` (`blood_bank_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+-- -----------FAQ table
+
+create table if not exists `bloodbank`.`faq`(
+	`faq_id` int not null auto_increment,
+    `question` varchar(100) null,
+    `answer` varchar(300) null,
+    `is_answered` boolean default 0,
+    `user_id` int not null,
+PRIMARY KEY (`faq_id`),
+CONSTRAINT `user_id_of_faq_table_fk`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `bloodbank`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 -- -----------state table
 
 CREATE TABLE IF NOT EXISTS `bloodbank`.`state`(
@@ -125,18 +184,7 @@ CREATE TABLE `bloodbank`.`user_role` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE  TABLE `bloodbank`.`customer_auth` (
-  `id` INT NOT NULL ,
-  `selector` VARCHAR(45) NOT NULL ,
-  `validator` VARCHAR(100) NOT NULL ,
-  `user_id` INT NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `user_id_fk_auth_idx` (`user_id` ASC) ,
-  CONSTRAINT `user_id_fk_auth`
-    FOREIGN KEY (`user_id` )
-    REFERENCES `bloodbank`.`user` (`user_id` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+
 
 
 

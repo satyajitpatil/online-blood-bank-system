@@ -12,6 +12,13 @@ public class CityAndStateService {
 	
 	@Autowired
 	private UserRepository userRepository;
+
+	public CityAndStateService(UserRepository userRepository) {
+		super();
+		this.userRepository = userRepository;
+	}
+	
+	
 	
 	/*
 	 * public List<String> getAllStates(){ List<String> state =

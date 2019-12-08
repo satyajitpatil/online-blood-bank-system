@@ -44,6 +44,28 @@ public interface UserRepository extends JpaRepository<User, Long> {
     
     @Query(value = "SELECT state_id from state where state=?;",nativeQuery = true)
     public int getStateIdByStateName(String stateName);
+    
+	/*
+	 * @Query(value = "SELECT user_id from user where user_name = ?;",nativeQuery =
+	 * true) public int getUserIdByUserName(String userName);
+	 */
 
+    @Query(value = "SELECT user.user_id, "
+			+ "user.user_name, "
+			+ "user.first_name, "
+			+ "user.last_name, "
+			+ "user.age, "
+			+ "user.gender, "
+			+ "user.contact_number, "
+			+ "user.email, "
+			+ "user.password, "
+			+ "user.weight, "
+			+ "state.state, "
+			+ "user.area, "
+			+ "user.pincode, "
+			+ "user.blood_group "
+			+ "FROM user,state "
+			+ "WHERE user.state_id = state.state_id AND user_name=?;", nativeQuery = true)
+	public User getUserByUsername(String username);
 	
 }

@@ -41,6 +41,10 @@ public class AppUserDetailService implements UserDetailsService {
 		return appUser;
 	}
 	
+	public User getUserByUserName(String userName) {
+		return userRepository.getUserByUsername(userName);
+	}
+	
 	public void signUp(User user) throws Exception{
 		Optional<User> userObj = userRepository.findUserByUsername(user.getUserName());
 		
