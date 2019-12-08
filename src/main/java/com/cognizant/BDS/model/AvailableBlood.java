@@ -17,6 +17,8 @@ public class AvailableBlood {
 	private long id;
 	@Column(name = "blood_group")
 	private String bloodGroup;
+	@Column(name = "blood_bank_name")
+	private String hospitalName;
 	@JoinColumn(name = "state_id")
 	private String state;
 	@Column(name = "area")
@@ -27,24 +29,22 @@ public class AvailableBlood {
 	private long contactNumber;
 	@Column(name = "units")
 	private int units;
-	@Column(name = "donor_id")
-	private int donorId;
 
 	public AvailableBlood() {
 
 	}
 
-	public AvailableBlood(long id, String bloodGroup, String state, String area, int pincode, long contactNumber,
-			int units, int donorId) {
+	public AvailableBlood(long id, String hospitalName, String bloodGroup, String state, String area, int pincode,
+			long contactNumber, int units) {
 		super();
 		this.id = id;
+		this.hospitalName = hospitalName;
 		this.bloodGroup = bloodGroup;
 		this.state = state;
 		this.area = area;
 		this.pincode = pincode;
 		this.contactNumber = contactNumber;
 		this.units = units;
-		this.donorId = donorId;
 	}
 
 	public long getId() {
@@ -53,6 +53,14 @@ public class AvailableBlood {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getHospitalName() {
+		return hospitalName;
+	}
+
+	public void setHospitalName(String hospitalName) {
+		this.hospitalName = hospitalName;
 	}
 
 	public String getBloodGroup() {
@@ -103,18 +111,16 @@ public class AvailableBlood {
 		this.units = units;
 	}
 
-	public int getDonorId() {
-		return donorId;
-	}
-
-	public void setDonorId(int donorId) {
-		this.donorId = donorId;
-	}
-
 	@Override
 	public String toString() {
-		return "AvailableBlood [id=" + id + ", bloodGroup=" + bloodGroup + ", state=" + state + ", area=" + area
-				+ ", pincode=" + pincode + ", contactNumber=" + contactNumber + ", donorId=" + donorId + "]";
+		return "AvailableBlood [id=" + id + ", hospitalName=" + hospitalName + ", bloodGroup=" + bloodGroup + ", state="
+				+ state + ", area=" + area + ", pincode=" + pincode + ", contactNumber=" + contactNumber + ", units="
+				+ units + "]";
 	}
+	
+	
+	
+
+	
 
 }

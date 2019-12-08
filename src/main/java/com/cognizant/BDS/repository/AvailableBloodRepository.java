@@ -10,13 +10,13 @@ import com.cognizant.BDS.model.AvailableBlood;
 public interface AvailableBloodRepository extends JpaRepository<AvailableBlood, Long> {
 
 	@Query(value = "Select available_blood.blood_id, " 
-			+ "available_blood.blood_group, " 
+			+ "available_blood.blood_group, "
+			+ "available_blood.blood_bank_name, " 
 			+ "state.state, "
 			+ "available_blood.area, " 
 			+ "available_blood.pincode, " 
 			+ "available_blood.contact_number, "
-			+ "available_blood.units, " 
-			+ "available_blood.donor_id " 
+			+ "available_blood.units "
 			+ "FROM available_blood, state "
 			+ "where available_blood.state_id = state.state_id;", nativeQuery = true)
 	public Set<AvailableBlood> getAvailableBlood();
