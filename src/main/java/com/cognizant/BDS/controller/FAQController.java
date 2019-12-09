@@ -36,4 +36,5 @@ public class FAQController {
 	public ResponseEntity<Set<FAQ>> getMyQuestions(@PathVariable("id") int userId){
 		return new ResponseEntity<Set<FAQ>>(faqService.getMyQuestions(userId),HttpStatus.OK);	
 	}
+	
 }

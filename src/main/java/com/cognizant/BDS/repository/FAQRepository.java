@@ -21,7 +21,12 @@ public interface FAQRepository extends JpaRepository<FAQ, Long> {
 	public Set<FAQ> getMyQuestions(int userId);
 	
 	//PostQuestions
-	@Query(value = "insert into faq(question,answer,is_answered,user_id) values(?,?,?,?);",nativeQuery = true)
-	public int postQuestions(String question,String answer, boolean isAnswered, int userId);
+	@Query(value = "insert into faq(question,is_answered,user_id) values(?,?,?);",nativeQuery = true)
+	public int postQuestions(String question, boolean isAnswered, int userId);
+	
+	//answer questions for admin
+	@Query(value = "update faq set answer = ?, is_answered = 1, user_id = ? where faq_id = ?;",nativeQuery = true)
+	public int answerQuestion(String answer, int userId, int faqId);
+	
 
 }

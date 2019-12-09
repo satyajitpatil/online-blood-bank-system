@@ -31,7 +31,6 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`user` (
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
 	`blood_group` VARCHAR(4),
-	`donor_id` INT NULL,
 PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
@@ -40,13 +39,18 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `bloodbank`.`available_blood` (
 	`blood_id` INT NOT NULL AUTO_INCREMENT,
 	`blood_group` VARCHAR(4) NULL,
+	`blood_bank_name` VARCHAR(50) NULL,
 	`state_id` INT(2) NULL,
 	`area` VARCHAR(20) NULL,
 	`pincode` INT(6) NULL,
 	`contact_number` BIGINT(10) NULL,
 	`units` INT NOT NULL,
-	`donor_id` INT NULL,
-PRIMARY KEY (`blood_id`))
+PRIMARY KEY (`blood_id`),
+CONSTRAINT `state_id_available_fk`
+    FOREIGN KEY (`state_id`)
+    REFERENCES `bloodbank`.`state` (`state_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `bloodbank`.`blood_requirement` (
@@ -57,7 +61,12 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`blood_requirement` (
 	`pincode` INT(6) NULL,
 	`contact_number` BIGINT(10) NULL,
 	`user_id` INT NULL,
-PRIMARY KEY (`req_id`))
+PRIMARY KEY (`req_id`),
+CONSTRAINT `state_id_blood_requirement_fk`
+    FOREIGN KEY (`state_id`)
+    REFERENCES `bloodbank`.`state` (`state_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 -- -----------slot table

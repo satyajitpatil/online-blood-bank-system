@@ -25,9 +25,11 @@ public class MyRequestFromBloodBank {
 	private boolean isApproved;
 	@Column(name = "is_rejected")
 	private boolean isRejected;
+	@Column(name = "is_pending")
+	private boolean isPending;
 
 	public MyRequestFromBloodBank(long id, int availableBloodId, String bloodGroup, String bloodBankName,
-			boolean isApproved, boolean isRejected) {
+			boolean isApproved, boolean isRejected, boolean isPending) {
 		super();
 		this.id = id;
 		this.availableBloodId = availableBloodId;
@@ -35,6 +37,7 @@ public class MyRequestFromBloodBank {
 		this.bloodBankName = bloodBankName;
 		this.isApproved = isApproved;
 		this.isRejected = isRejected;
+		this.isPending = isPending;
 	}
 
 	public MyRequestFromBloodBank() {
@@ -89,12 +92,22 @@ public class MyRequestFromBloodBank {
 		this.isRejected = isRejected;
 	}
 
+	public boolean isPending() {
+		return isPending;
+	}
+
+	public void setPending(boolean isPending) {
+		this.isPending = isPending;
+	}
+
 	@Override
 	public String toString() {
 		return "MyRequestFromBloodBank [id=" + id + ", availableBloodId=" + availableBloodId + ", bloodGroup="
 				+ bloodGroup + ", bloodBankName=" + bloodBankName + ", isApproved=" + isApproved + ", isRejected="
-				+ isRejected + "]";
+				+ isRejected + ", isPending=" + isPending + "]";
 	}
+
+	
 	
 	
 

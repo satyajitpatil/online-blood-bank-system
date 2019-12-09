@@ -1,5 +1,6 @@
 package com.cognizant.BDS.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -67,5 +68,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 			+ "FROM user,state "
 			+ "WHERE user.state_id = state.state_id AND user_name=?;", nativeQuery = true)
 	public User getUserByUsername(String username);
+    
+    /*@Query(value="select state from state")
+    public List<String> getStates();*/
 	
 }

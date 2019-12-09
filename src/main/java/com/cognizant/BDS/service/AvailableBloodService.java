@@ -25,23 +25,39 @@ public class AvailableBloodService {
 		return availableBloodRepository.getAvailableBlood();
 	}	
 	
+	
+	//get blood units for admin
 	public Integer getAvailableBloodByBloodGroupForAdmin(String bloodGroup) {
-		Integer sum = availableBloodRepository.getAvailableBloodByBloodGroupForAdmin(bloodGroup);
-		
+		Integer sum = availableBloodRepository.getAvailableBloodByBloodGroupForAdmin(bloodGroup);		
 		if(sum!=null) {
 			return sum;
 		}
 		else {
 			sum = 0;
-		}
-		
+		}		
 		return sum;
 	}
 	
-	
+	//by all
 	public Set<AvailableBlood> getAvailableBloodByStateAndAreaAndBloodGroup(String state, String area, int pincode, String bloodGroup){
 		int stateId = availableBloodRepository.getStateIdByStateName(state);
 		return availableBloodRepository.getAvailableBloodByStateAndAreaAndBloodGroup(stateId, area, pincode, bloodGroup);
+	}
+	//by state
+	public Set<AvailableBlood> getAvailableBloodByState(String state){
+		int stateId = availableBloodRepository.getStateIdByStateName(state);
+		return availableBloodRepository.getAvailableBloodByState(stateId);
+	}
+	
+	//by bloodGroup
+	public Set<AvailableBlood> getAvailableBloodByBloodGroup(String bloodGroup){
+		return availableBloodRepository.getAvailableBloodByBloodGroup(bloodGroup);
+	}
+	
+	//by state and area
+	public Set<AvailableBlood> getAvailableBloodByStateAndArea(String state, String area){
+		int stateId = availableBloodRepository.getStateIdByStateName(state);
+		return availableBloodRepository.getAvailableBloodByStateAndArea(stateId, area);
 	}
 	
 	

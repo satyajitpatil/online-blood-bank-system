@@ -63,10 +63,6 @@ public class Role {
 		this.userList = userList;
 	}
 
-	@Override
-	public String toString() {
-		return "Role [id=" + id + ", name=" + name + ", userList=" + userList + "]";
-	}
 
 
 	
