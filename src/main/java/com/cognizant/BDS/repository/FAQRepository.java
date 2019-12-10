@@ -31,7 +31,7 @@ public interface FAQRepository extends JpaRepository<FAQ, Long> {
 	//answer questions for admin
 	@Modifying
 	@Transactional
-	@Query(value = "update faq set answer = ?, is_answered = 1, where faq_id = ?;",nativeQuery = true)
+	@Query(value = "update faq set answer = ?, is_answered = 1 where faq_id = ?;",nativeQuery = true)
 	public int answerQuestion(String answer , int faqId);
 	
 

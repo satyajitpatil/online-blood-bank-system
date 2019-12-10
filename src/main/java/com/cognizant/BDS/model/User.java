@@ -17,64 +17,61 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "user")
 public class User {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private Long userId;
-	
-	@Column(name="user_name")
+
+	@Column(name = "user_name")
 	private String userName;
-	
-	@Column(name="first_name")
+
+	@Column(name = "first_name")
 	private String firstName;
-	
-	@Column(name="last_name")
+
+	@Column(name = "last_name")
 	private String lastName;
-	
-	@Column(name="age")
+
+	@Column(name = "age")
 	private int age;
-	
-	@Column(name="gender")
+
+	@Column(name = "gender")
 	private String gender;
-	
-	@Column(name="contact_number")
+
+	@Column(name = "contact_number")
 	private long contactNumber;
-	
-	@Column(name="email")
+
+	@Column(name = "email")
 	private String email;
-	
-	@Column(name="password")
+
+	@Column(name = "password")
 	private String password;
-	
-	@Column(name="weight")
+
+	@Column(name = "weight")
 	private double weight;
-	
-	@JoinColumn(name="state_id")
+
+	@JoinColumn(name = "state_id")
 	private String state;
-	
-	@Column(name="area")
+
+	@Column(name = "area")
 	private String area;
-	
-	@Column(name="pincode")
+
+	@Column(name = "pincode")
 	private int pincode;
-	
-	@Column(name="blood_group")
+
+	@Column(name = "blood_group")
 	private String bloodGroup;
-	
+
+	@Column(name = "is_donor")
+	private boolean isDonor;
+
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "ur_us_id"), inverseJoinColumns = @JoinColumn(name = "ur_ro_id"))
 	private Set<Role> roleList = new HashSet<Role>();
-	
-	
-	
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
-	public User(Long userId, String userName, String firstName, String lastName, int age, String gender, long contactNumber, String email,
-			String password, double weight, String state, String area, int pincode, String bloodGroup, Set<Role> roleList) {
+	public User(Long userId, String userName, String firstName, String lastName, int age, String gender,
+			long contactNumber, String email, String password, double weight, String state, String area, int pincode,
+			String bloodGroup, boolean isDonor, Set<Role> roleList) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -90,7 +87,12 @@ public class User {
 		this.area = area;
 		this.pincode = pincode;
 		this.bloodGroup = bloodGroup;
+		this.isDonor = isDonor;
 		this.roleList = roleList;
+	}
+
+	public User() {
+		super();
 	}
 
 	public Long getUserId() {
@@ -99,7 +101,7 @@ public class User {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
-	}	
+	}
 
 	public String getUserName() {
 		return userName;
@@ -125,7 +127,7 @@ public class User {
 		this.lastName = lastName;
 	}
 
-	public int getAge(){
+	public int getAge() {
 		return age;
 	}
 
@@ -205,6 +207,14 @@ public class User {
 		this.bloodGroup = bloodGroup;
 	}
 
+	public boolean isDonor() {
+		return isDonor;
+	}
+
+	public void setDonor(boolean isDonor) {
+		this.isDonor = isDonor;
+	}
+
 	public Set<Role> getRoleList() {
 		return roleList;
 	}
@@ -212,9 +222,5 @@ public class User {
 	public void setRoleList(Set<Role> roleList) {
 		this.roleList = roleList;
 	}
-	
-	
-	
-	
-	
+
 }

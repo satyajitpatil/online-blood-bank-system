@@ -63,6 +63,14 @@ public class UserController {
 		
 	}
 	
+	@GetMapping(value="/registerAsDonor/{userId}")
+    public void registerAsDonor(@PathVariable("userId") int userId)
+    {
+                    appUserDetailService.registerAsDonor(userId);
+                    
+    }
+
+	
 
 	public PasswordEncoder passwordEncoder() {
 		// LOGGER.info("Start");

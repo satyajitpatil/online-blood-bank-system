@@ -33,4 +33,9 @@ public class SlotController {
 		return new ResponseEntity<Long>(slotService.checkIfASlotIsBooked(slot),HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "/slotBooking")
+	public void bookSlot(@RequestBody Slot slot){
+		slotService.bookSlot(slot);
+	}
+	
 }

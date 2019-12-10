@@ -40,8 +40,13 @@ public class FAQController {
 	}
 	
 	@PostMapping(value="/postQuestion")
-	public void getMyQuestions(@RequestBody FAQ faq){
+	public void postQuestion(@RequestBody FAQ faq){
 		faqService.postQuestion(faq);	
+	}
+	
+	@PostMapping(value="/answerQuestion")
+	public void answerQuestionByAdmin(@RequestBody FAQ faq){
+		faqService.answerQuestionByAdmin(faq);	
 	}
 	
 }

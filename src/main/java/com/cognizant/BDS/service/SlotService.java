@@ -29,5 +29,10 @@ public class SlotService {
 		int cityId = slotRepository.getCityIdByCityName(slot.getCity());
 		return slotRepository.getCountOfSlotByInput(slot.getHospitalName(), cityId, slot.getDate().toString(), slot.getTime().toString() );
 	}
+	
+	public int bookSlot(Slot slot){
+		int cityId = slotRepository.getCityIdByCityName(slot.getCity());
+		return slotRepository.insertSlot(slot.getHospitalName(),cityId,slot.getDate().toString(),slot.getTime().toString(),slot.getDonorId());
+	}
 
 }

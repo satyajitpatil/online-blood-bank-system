@@ -34,12 +34,12 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 		
 		
 		//insert slot
-		/*@Modifying
+		@Modifying
 		@Transactional
-		@Query(value = "INSERT INTO slot (hospital_name, cityId, date, time, donorId) values(?,?,?,?,?);", nativeQuery = true)
-		int addFeedback(String hospitalName, int city_id , String date, String time, int donorId);
+		@Query(value = "INSERT INTO slot (hospital_name, city_id, date, time, donor_id) values(?,?,?,?,?);", nativeQuery = true)
+		public int insertSlot(String hospitalName, int city_id , String date, String time, int donorId);
 		
-		*/
+		
 	}
 
 	

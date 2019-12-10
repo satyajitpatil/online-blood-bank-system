@@ -29,7 +29,7 @@ public class AppUserDetailService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		user = userRepository.findUserByUsername(username).get();
-	System.out.println("inside APPUSERDETAILSERVICE " + user);
+		System.out.println("inside APPUSERDETAILSERVICE " + user);
 		if (user == null) {
 			LOGGER.info("USER NOT FOUND");
 			throw new UsernameNotFoundException("Username not found");
@@ -40,37 +40,42 @@ public class AppUserDetailService implements UserDetailsService {
 
 		return appUser;
 	}
-	
+
 	public User getUserByUserName(String userName) {
 		User user = userRepository.getUserByUsername(userName);
 		user.setPassword("Not Allowed to fetch");
 		return user;
 	}
-	
-	public void signUp(User user) throws Exception{
+
+	public int registerAsDonor(int userId) {
+		return userRepository.updateToDonor(userId);
+	}
+
+	public void signUp(User user) throws Exception {
 		Optional<User> userObj = userRepository.findUserByUsername(user.getUserName());
-		
+
 		if (userObj.isPresent()) {
 			LOGGER.info("USER NOT FOUND");
 			throw new Exception("User already exists");
-			//TODO: Custom exception
+			// TODO: Custom exception
 		} else {
 			System.out.println("ifNotPresent");
-            String pass = user.getPassword();
-            user.setPassword(passwordEncoder().encode(pass));
-            //userRepository.save(user);
-            int state_id = userRepository.getStateIdByStateName(user.getState());
-            System.out.println(state_id);
-            userRepository.addUser(user.getUserName(), user.getFirstName(),user.getLastName(),user.getAge(),user.getGender(),user.getContactNumber(),user.getEmail(), user.getPassword(),user.getWeight(),state_id,user.getArea(),user.getPincode(),user.getBloodGroup());
-            System.out.println("ifNotPresent2");
-            User newUser = userRepository.findUserByUsername(user.getUserName()).get();
-            userRepository.addUserRole(newUser.getUserId(), 2);
-            System.out.println("ifNotPresent3");
+			String pass = user.getPassword();
+			user.setPassword(passwordEncoder().encode(pass));
+			// userRepository.save(user);
+			int state_id = userRepository.getStateIdByStateName(user.getState());
+			System.out.println(state_id);
+			userRepository.addUser(user.getUserName(), user.getFirstName(), user.getLastName(), user.getAge(),
+					user.getGender(), user.getContactNumber(), user.getEmail(), user.getPassword(), user.getWeight(),
+					state_id, user.getArea(), user.getPincode(), user.getBloodGroup());
+			System.out.println("ifNotPresent2");
+			User newUser = userRepository.findUserByUsername(user.getUserName()).get();
+			userRepository.addUserRole(newUser.getUserId(), 2);
+			System.out.println("ifNotPresent3");
 
 		}
 	}
-	
-	
+
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}

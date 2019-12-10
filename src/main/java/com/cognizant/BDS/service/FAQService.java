@@ -34,5 +34,9 @@ public class FAQService {
 		return faqRepository.postQuestions(faq.getQuestion(),faq.getUserId());
 	}
 	
+	public int answerQuestionByAdmin(FAQ faq){
+		return faqRepository.answerQuestion(faq.getAnswer(), faq.getFaqId());
+	}
+	
 	
 }

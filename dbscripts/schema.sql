@@ -1,18 +1,23 @@
 CREATE SCHEMA IF NOT EXISTS `bloodbank` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `bloodbank` ;
 
+-- -----------state table
 
-
--- -----------feedback table
-
-CREATE TABLE IF NOT EXISTS `bloodbank`.`feedback` (
-    `feedback_id` INT NOT NULL AUTO_INCREMENT,
-    `hospital_name` VARCHAR(15) NULL,
-	`city_id` INT NULL,
-	`comments` TEXT(500) NULL,
-	`user_id` INT NOT NULL,
-	PRIMARY KEY (`feedback_id`))
+CREATE TABLE IF NOT EXISTS `bloodbank`.`state`(
+	`state_id` INT NOT NULL AUTO_INCREMENT,
+	`state` VARCHAR(50) NULL,
+PRIMARY KEY (`state_id`))
 ENGINE = InnoDB;
+
+-- -----------city table
+
+CREATE TABLE IF NOT EXISTS `bloodbank`.`city`(
+	`city_id` INT NOT NULL AUTO_INCREMENT,
+	`city` VARCHAR(50) NULL,
+	`state_id` INT NULL,
+PRIMARY KEY (`city_id`))
+ENGINE = InnoDB;
+
 
 -- -----------user table
 
@@ -33,6 +38,19 @@ CREATE TABLE IF NOT EXISTS `bloodbank`.`user` (
 	`blood_group` VARCHAR(4),
 PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
+
+-- -----------feedback table
+
+CREATE TABLE IF NOT EXISTS `bloodbank`.`feedback` (
+    `feedback_id` INT NOT NULL AUTO_INCREMENT,
+    `hospital_name` VARCHAR(15) NULL,
+	`city_id` INT NULL,
+	`comments` TEXT(500) NULL,
+	`user_id` INT NOT NULL,
+	PRIMARY KEY (`feedback_id`))
+ENGINE = InnoDB;
+
+
 
 -- -----------available_blood table
 
@@ -151,22 +169,7 @@ CONSTRAINT `user_id_of_faq_table_fk`
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
--- -----------state table
 
-CREATE TABLE IF NOT EXISTS `bloodbank`.`state`(
-	`state_id` INT NOT NULL AUTO_INCREMENT,
-	`state` VARCHAR(50) NULL,
-PRIMARY KEY (`state_id`))
-ENGINE = InnoDB;
-
--- -----------city table
-
-CREATE TABLE IF NOT EXISTS `bloodbank`.`city`(
-	`city_id` INT NOT NULL AUTO_INCREMENT,
-	`city` VARCHAR(50) NULL,
-	`state_id` INT NULL,
-PRIMARY KEY (`city_id`))
-ENGINE = InnoDB;
 
 
 CREATE TABLE `bloodbank`.`role` (
