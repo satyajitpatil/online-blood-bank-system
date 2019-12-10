@@ -30,5 +30,9 @@ public class FAQService {
 		return faqRepository.getMyQuestions(userId);
 	}
 	
+	public int postQuestion(FAQ faq) {
+		return faqRepository.postQuestions(faq.getQuestion(),faq.getUserId());
+	}
+	
 	
 }

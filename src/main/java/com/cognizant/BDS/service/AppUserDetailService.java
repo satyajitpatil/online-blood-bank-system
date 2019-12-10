@@ -42,7 +42,9 @@ public class AppUserDetailService implements UserDetailsService {
 	}
 	
 	public User getUserByUserName(String userName) {
-		return userRepository.getUserByUsername(userName);
+		User user = userRepository.getUserByUsername(userName);
+		user.setPassword("Not Allowed to fetch");
+		return user;
 	}
 	
 	public void signUp(User user) throws Exception{

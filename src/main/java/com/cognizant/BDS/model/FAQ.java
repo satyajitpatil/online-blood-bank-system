@@ -21,13 +21,13 @@ public class FAQ {
 	@Column(name = "is_answered")
 	private boolean isAnswered;
 	@Column(name = "user_id")
-	private String userId;
+	private int userId;
 
 	public FAQ() {
 		
 	}
 
-	public FAQ(int faqId, String question, String answer, boolean isAnswered, String userId) {
+	public FAQ(int faqId, String question, String answer, boolean isAnswered, int userId) {
 		super();
 		this.faqId = faqId;
 		this.question = question;
@@ -68,11 +68,11 @@ public class FAQ {
 		this.isAnswered = isAnswered;
 	}
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

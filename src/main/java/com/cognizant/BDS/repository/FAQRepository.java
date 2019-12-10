@@ -3,8 +3,10 @@ package com.cognizant.BDS.repository;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cognizant.BDS.model.FAQ;
 
@@ -21,12 +23,16 @@ public interface FAQRepository extends JpaRepository<FAQ, Long> {
 	public Set<FAQ> getMyQuestions(int userId);
 	
 	//PostQuestions
-	@Query(value = "insert into faq(question,is_answered,user_id) values(?,?,?);",nativeQuery = true)
-	public int postQuestions(String question, boolean isAnswered, int userId);
+	@Modifying
+	@Transactional
+	@Query(value = "insert into faq(question,user_id) values(?,?);",nativeQuery = true)
+	public int postQuestions(String question, int userId);
 	
 	//answer questions for admin
-	@Query(value = "update faq set answer = ?, is_answered = 1, user_id = ? where faq_id = ?;",nativeQuery = true)
-	public int answerQuestion(String answer, int userId, int faqId);
+	@Modifying
+	@Transactional
+	@Query(value = "update faq set answer = ?, is_answered = 1, where faq_id = ?;",nativeQuery = true)
+	public int answerQuestion(String answer , int faqId);
 	
 
 }

@@ -26,8 +26,10 @@ public class Role {
 	
 	/*@OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
 	private Set<User> userList;*/
-    @ManyToMany(mappedBy = "roleList",fetch = FetchType.EAGER)
-    private Set<User> userList;
+	/*
+	 * @ManyToMany(mappedBy = "roleList",fetch = FetchType.EAGER) private Set<User>
+	 * userList;
+	 */
 
 	public Role() {
 		super();
@@ -36,7 +38,7 @@ public class Role {
 	public Role(String name, Set<User> userList) {
 		super();
 		this.name = name;
-		this.userList = userList;
+		//this.userList = userList;
 	}
 
 	public long getId() {
@@ -55,14 +57,11 @@ public class Role {
 		this.name = name;
 	}
 
-	public Set<User> getUserList() {
-		return userList;
-	}
-
-	public void setUserList(Set<User> userList) {
-		this.userList = userList;
-	}
-
+	/*
+	 * public Set<User> getUserList() { return userList; }
+	 * 
+	 * public void setUserList(Set<User> userList) { this.userList = userList; }
+	 */
 
 
 	
