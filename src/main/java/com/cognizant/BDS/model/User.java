@@ -63,15 +63,19 @@ public class User {
 	private String bloodGroup;
 
 	@Column(name = "is_donor")
-	private boolean isDonor;
+	private boolean donor;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "ur_us_id"), inverseJoinColumns = @JoinColumn(name = "ur_ro_id"))
 	private Set<Role> roleList = new HashSet<Role>();
 
+	public User() {
+		super();
+	}
+
 	public User(Long userId, String userName, String firstName, String lastName, int age, String gender,
 			long contactNumber, String email, String password, double weight, String state, String area, int pincode,
-			String bloodGroup, boolean isDonor, Set<Role> roleList) {
+			String bloodGroup, boolean donor, Set<Role> roleList) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -87,12 +91,8 @@ public class User {
 		this.area = area;
 		this.pincode = pincode;
 		this.bloodGroup = bloodGroup;
-		this.isDonor = isDonor;
+		this.donor = donor;
 		this.roleList = roleList;
-	}
-
-	public User() {
-		super();
 	}
 
 	public Long getUserId() {
@@ -208,11 +208,11 @@ public class User {
 	}
 
 	public boolean isDonor() {
-		return isDonor;
+		return donor;
 	}
 
-	public void setDonor(boolean isDonor) {
-		this.isDonor = isDonor;
+	public void setDonor(boolean donor) {
+		this.donor = donor;
 	}
 
 	public Set<Role> getRoleList() {
@@ -221,6 +221,117 @@ public class User {
 
 	public void setRoleList(Set<Role> roleList) {
 		this.roleList = roleList;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + age;
+		result = prime * result + ((area == null) ? 0 : area.hashCode());
+		result = prime * result + ((bloodGroup == null) ? 0 : bloodGroup.hashCode());
+		result = prime * result + (int) (contactNumber ^ (contactNumber >>> 32));
+		result = prime * result + (donor ? 1231 : 1237);
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
+		result = prime * result + pincode;
+		result = prime * result + ((roleList == null) ? 0 : roleList.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
+		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((userName == null) ? 0 : userName.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(weight);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (age != other.age)
+			return false;
+		if (area == null) {
+			if (other.area != null)
+				return false;
+		} else if (!area.equals(other.area))
+			return false;
+		if (bloodGroup == null) {
+			if (other.bloodGroup != null)
+				return false;
+		} else if (!bloodGroup.equals(other.bloodGroup))
+			return false;
+		if (contactNumber != other.contactNumber)
+			return false;
+		if (donor != other.donor)
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
+		if (pincode != other.pincode)
+			return false;
+		if (roleList == null) {
+			if (other.roleList != null)
+				return false;
+		} else if (!roleList.equals(other.roleList))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
+		if (userId == null) {
+			if (other.userId != null)
+				return false;
+		} else if (!userId.equals(other.userId))
+			return false;
+		if (userName == null) {
+			if (other.userName != null)
+				return false;
+		} else if (!userName.equals(other.userName))
+			return false;
+		if (Double.doubleToLongBits(weight) != Double.doubleToLongBits(other.weight))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", age=" + age + ", gender=" + gender + ", contactNumber=" + contactNumber + ", email="
+				+ email + ", password=" + password + ", weight=" + weight + ", state=" + state + ", area=" + area
+				+ ", pincode=" + pincode + ", bloodGroup=" + bloodGroup + ", donor=" + donor + ", roleList=" + roleList
+				+ "]";
 	}
 
 }

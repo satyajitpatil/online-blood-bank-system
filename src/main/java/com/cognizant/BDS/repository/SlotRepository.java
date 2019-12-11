@@ -29,7 +29,7 @@ public interface SlotRepository extends JpaRepository<Slot, Long> {
 		@Query(value = "SELECT id from city where city=?;",nativeQuery = true)
 		public int getCityIdByCityName(String cityName);
 		
-		@Query(value = "select count(slot.slot_id) from slot where slot.hospital_name=? and slot.city_id=?  and slot.date=? and slot.time =?;",nativeQuery = true)
+		@Query(value = "select count(slot.slot_id) from slot where slot.hospital_name=? and slot.city_id=? and slot.date=? and slot.time =?;",nativeQuery = true)
 		public Long getCountOfSlotByInput(String hospitalName, int cityId, String date, String time);
 		
 		

@@ -22,90 +22,122 @@ public class MyRequestFromBloodBank {
 	@JoinColumn(name = "blood_bank_id")
 	private String bloodBankName;
 	@Column(name = "is_approved")
-	private boolean isApproved;
+	private boolean approved;
 	@Column(name = "is_rejected")
-	private boolean isRejected;
+	private boolean rejected;
 	@Column(name = "is_pending")
-	private boolean isPending;
-
+	private boolean pending;
+	
+	
+	
+	public MyRequestFromBloodBank() {
+		super();
+	}
 	public MyRequestFromBloodBank(long id, int availableBloodId, String bloodGroup, String bloodBankName,
-			boolean isApproved, boolean isRejected, boolean isPending) {
+			boolean approved, boolean rejected, boolean pending) {
 		super();
 		this.id = id;
 		this.availableBloodId = availableBloodId;
 		this.bloodGroup = bloodGroup;
 		this.bloodBankName = bloodBankName;
-		this.isApproved = isApproved;
-		this.isRejected = isRejected;
-		this.isPending = isPending;
+		this.approved = approved;
+		this.rejected = rejected;
+		this.pending = pending;
 	}
-
-	public MyRequestFromBloodBank() {
-
-	}
-
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
 	public int getAvailableBloodId() {
 		return availableBloodId;
 	}
-
 	public void setAvailableBloodId(int availableBloodId) {
 		this.availableBloodId = availableBloodId;
 	}
-
 	public String getBloodGroup() {
 		return bloodGroup;
 	}
-
 	public void setBloodGroup(String bloodGroup) {
 		this.bloodGroup = bloodGroup;
 	}
-
 	public String getBloodBankName() {
 		return bloodBankName;
 	}
-
 	public void setBloodBankName(String bloodBankName) {
 		this.bloodBankName = bloodBankName;
 	}
-
 	public boolean isApproved() {
-		return isApproved;
+		return approved;
 	}
-
-	public void setApproved(boolean isApproved) {
-		this.isApproved = isApproved;
+	public void setApproved(boolean approved) {
+		this.approved = approved;
 	}
-
 	public boolean isRejected() {
-		return isRejected;
+		return rejected;
 	}
-
-	public void setRejected(boolean isRejected) {
-		this.isRejected = isRejected;
+	public void setRejected(boolean rejected) {
+		this.rejected = rejected;
 	}
-
 	public boolean isPending() {
-		return isPending;
+		return pending;
 	}
-
-	public void setPending(boolean isPending) {
-		this.isPending = isPending;
+	public void setPending(boolean pending) {
+		this.pending = pending;
 	}
-
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (approved ? 1231 : 1237);
+		result = prime * result + availableBloodId;
+		result = prime * result + ((bloodBankName == null) ? 0 : bloodBankName.hashCode());
+		result = prime * result + ((bloodGroup == null) ? 0 : bloodGroup.hashCode());
+		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (pending ? 1231 : 1237);
+		result = prime * result + (rejected ? 1231 : 1237);
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MyRequestFromBloodBank other = (MyRequestFromBloodBank) obj;
+		if (approved != other.approved)
+			return false;
+		if (availableBloodId != other.availableBloodId)
+			return false;
+		if (bloodBankName == null) {
+			if (other.bloodBankName != null)
+				return false;
+		} else if (!bloodBankName.equals(other.bloodBankName))
+			return false;
+		if (bloodGroup == null) {
+			if (other.bloodGroup != null)
+				return false;
+		} else if (!bloodGroup.equals(other.bloodGroup))
+			return false;
+		if (id != other.id)
+			return false;
+		if (pending != other.pending)
+			return false;
+		if (rejected != other.rejected)
+			return false;
+		return true;
+	}
 	@Override
 	public String toString() {
 		return "MyRequestFromBloodBank [id=" + id + ", availableBloodId=" + availableBloodId + ", bloodGroup="
-				+ bloodGroup + ", bloodBankName=" + bloodBankName + ", isApproved=" + isApproved + ", isRejected="
-				+ isRejected + ", isPending=" + isPending + "]";
+				+ bloodGroup + ", bloodBankName=" + bloodBankName + ", approved=" + approved + ", rejected=" + rejected
+				+ ", pending=" + pending + "]";
 	}
+
+	
 
 	
 	
