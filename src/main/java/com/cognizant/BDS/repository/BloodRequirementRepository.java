@@ -11,6 +11,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.cognizant.BDS.model.BloodRequirement;
 
 public interface BloodRequirementRepository extends JpaRepository<BloodRequirement, Long> {
+	
+	@Query(value = "select count(*) from blood_requirement",nativeQuery = true)
+	public int getTodaysRequest(String date);
 
        @Query(value = "SELECT blood_requirement.req_id, "
                      + "blood_requirement.blood_group, "

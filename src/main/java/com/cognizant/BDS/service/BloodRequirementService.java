@@ -1,5 +1,6 @@
 package com.cognizant.BDS.service;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,11 @@ public class BloodRequirementService {
                 public BloodRequirementService(BloodRequirementRepository bloodRequirementRepository) {
                                 super();
                                 this.bloodRequirementRepository = bloodRequirementRepository;
+                }
+                
+                public Integer getTodaysRequest() {
+                	LocalDate date = LocalDate.now();
+                	return bloodRequirementRepository.getTodaysRequest(date.toString());
                 }
                 
                 public Set<BloodRequirement> getAllBloodRequirement(){

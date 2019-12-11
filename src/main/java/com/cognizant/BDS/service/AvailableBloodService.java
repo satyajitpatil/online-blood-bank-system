@@ -28,13 +28,26 @@ public class AvailableBloodService {
 	
 	//get blood units for admin
 	public Integer getAvailableBloodByBloodGroupForAdmin(String bloodGroup) {
-		Integer sum = availableBloodRepository.getAvailableBloodByBloodGroupForAdmin(bloodGroup);		
-		if(sum!=null) {
-			return sum;
+		Integer sum = 0;
+		if(bloodGroup.equals("ALL")) {
+			sum = availableBloodRepository.getAvailableBloodByAllBloodGroupForAdmin();		
+			if(sum!=null) {
+				return sum;
+			}
+			else {
+				sum = 0;
+			}
 		}
 		else {
-			sum = 0;
-		}		
+			sum = availableBloodRepository.getAvailableBloodByBloodGroupForAdmin(bloodGroup);		
+			if(sum!=null) {
+				return sum;
+			}
+			else {
+				sum = 0;
+			}
+		}
+				
 		return sum;
 	}
 	

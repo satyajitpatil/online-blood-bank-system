@@ -51,4 +51,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	@Transactional
 	@Query(value = "UPDATE user SET is_donor = 1 " + "WHERE user_id = ?;", nativeQuery = true)
 	public int updateToDonor(int userId);
+	
+	@Query(value = "select count(*) from user where is_donor = 1;", nativeQuery = true)
+	public int getCountOfDonors();
 }

@@ -25,6 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.cognizant.BDS.model.Feedback;
 import com.cognizant.BDS.model.User;
 import com.cognizant.BDS.service.AppUserDetailService;
+import com.cognizant.BDS.service.UserService;
 
 @RestController
 @RequestMapping("/users")
@@ -32,6 +33,8 @@ public class UserController {
 
 	@Autowired
 	private AppUserDetailService appUserDetailService;
+	@Autowired
+	private UserService userService;
 
 	@PostMapping()
 	public void signup(@RequestBody User user) {
@@ -69,6 +72,11 @@ public class UserController {
                     appUserDetailService.registerAsDonor(userId);
                     
     }
+	
+	@GetMapping(value = "/getCountOfDonors")
+	public ResponseEntity<Integer> getCountOfDonors(){
+		return new ResponseEntity<Integer>(userService.getCountOfDonors(),HttpStatus.OK);
+	}
 
 	
 

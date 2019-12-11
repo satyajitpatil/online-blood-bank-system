@@ -24,6 +24,10 @@ public class BloodRequirementController {
                 public BloodRequirementController()
                 {}
 
+                @GetMapping(value = "/getTodaysRequest")
+                public ResponseEntity<Integer> getTodaysRequest(){
+                	return new ResponseEntity<Integer>(bloodRequirementService.getTodaysRequest(),HttpStatus.OK);
+                }
 
                 @RequestMapping()
                 public ResponseEntity<Set<BloodRequirement>> getAllBloodRequirement(){
