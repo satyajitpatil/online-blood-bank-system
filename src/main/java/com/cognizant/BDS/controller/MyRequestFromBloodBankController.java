@@ -32,5 +32,19 @@ public class MyRequestFromBloodBankController {
 	public ResponseEntity<Set<MyRequestFromBloodBank>> getMyRequests(@PathVariable("requestor_id") int userId){
 		return new ResponseEntity<Set<MyRequestFromBloodBank>>(myRequestFromBloodBankService.getMyRequests(userId),HttpStatus.OK);
 	} 
+	
+	@GetMapping(value = "/bloodBankRequest/{bb_id}")
+	public ResponseEntity<Set<MyRequestFromBloodBank>> getHospitalsPendingRequests(@PathVariable("bb_id") int bloodBankId){
+		return new ResponseEntity<Set<MyRequestFromBloodBank>>(myRequestFromBloodBankService.getHospitalsPendingRequests(bloodBankId),HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "/accept/{id}")
+	public void accept(@PathVariable("id") int id){
+		myRequestFromBloodBankService.accept(id);
+	}
+	@GetMapping(value = "/reject/{id}")
+	public void reject(@PathVariable("id") int id){
+		myRequestFromBloodBankService.reject(id);
+	}
 
 }

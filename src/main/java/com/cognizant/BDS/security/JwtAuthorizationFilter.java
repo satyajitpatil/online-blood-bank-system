@@ -27,7 +27,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
 	public JwtAuthorizationFilter(AuthenticationManager authenticationManager) {
 		super(authenticationManager);
-		LOGGER.info("Start");
+		LOGGER.info("Start construct");
 		LOGGER.debug("{}: ", authenticationManager);
 	}
 

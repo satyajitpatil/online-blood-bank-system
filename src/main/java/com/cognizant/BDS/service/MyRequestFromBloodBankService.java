@@ -27,4 +27,18 @@ public class MyRequestFromBloodBankService {
 		System.out.println(myRequestFromBloodBankRepository.getMyRequests(userId));
 		return myRequestFromBloodBankRepository.getMyRequests(userId);		
 	}
+	
+	public Set<MyRequestFromBloodBank> getHospitalsPendingRequests(int bloodBankId){
+		System.out.println(myRequestFromBloodBankRepository.getHospitalsPendingRequests(bloodBankId));
+		return myRequestFromBloodBankRepository.getHospitalsPendingRequests(bloodBankId);	
+	}
+	
+	public int accept(int id)
+	{
+		return myRequestFromBloodBankRepository.accept(id);
+	}
+	public int reject(int id)
+	{
+		return myRequestFromBloodBankRepository.reject(id);
+	}
 }

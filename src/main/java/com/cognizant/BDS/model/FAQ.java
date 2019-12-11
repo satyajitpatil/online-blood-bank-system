@@ -19,7 +19,7 @@ public class FAQ {
 	@Column(name = "answer")
 	private String answer;
 	@Column(name = "is_answered")
-	private boolean isAnswered;
+	private boolean answered;
 	@Column(name = "user_id")
 	private int userId;
 
@@ -27,12 +27,12 @@ public class FAQ {
 		
 	}
 
-	public FAQ(int faqId, String question, String answer, boolean isAnswered, int userId) {
+	public FAQ(int faqId, String question, String answer, boolean answered, int userId) {
 		super();
 		this.faqId = faqId;
 		this.question = question;
 		this.answer = answer;
-		this.isAnswered = isAnswered;
+		this.answered = answered;
 		this.userId = userId;
 	}
 
@@ -60,12 +60,12 @@ public class FAQ {
 		this.answer = answer;
 	}
 
-	public boolean isAnswered() {
-		return isAnswered;
+	public boolean answered() {
+		return answered;
 	}
 
-	public void setAnswered(boolean isAnswered) {
-		this.isAnswered = isAnswered;
+	public void setAnswered(boolean answered) {
+		this.answered = answered;
 	}
 
 	public int getUserId() {
